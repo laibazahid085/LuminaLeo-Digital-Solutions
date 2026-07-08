@@ -154,3 +154,68 @@ skillTriggers.forEach(trigger => {
         }
     });
 });
+// ===============================
+// Initialize EmailJS
+// ===============================
+emailjs.init({
+    publicKey: "jLY37yNT3KWtWlHa6"
+});
+
+// ===============================
+// Contact Form
+// ===============================
+const contactForm = document.getElementById("portfolio-contact");
+const statusMessage = document.getElementById("form-status");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        // Show Sending Status
+        statusMessage.className = "form-status sending";
+        statusMessage.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Sending your message...';
+
+        emailjs.send("service_5b7u1jj", "template_4bx8c2q", {
+            from_name: document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        })
+
+        .then(() => {
+
+            statusMessage.className = "form-status success";
+            statusMessage.innerHTML =
+                '<i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent successfully. I will contact you as soon as possible.';
+
+            contactForm.reset();
+
+            // Hide success message after 6 seconds
+            setTimeout(() => {
+                statusMessage.className = "form-status";
+                statusMessage.innerHTML = "";
+            }, 6000);
+
+        })
+
+        .catch((error) => {
+
+            console.error("EmailJS Error:", error);
+
+            statusMessage.className = "form-status error";
+            statusMessage.innerHTML =
+                '<i class="fa-solid fa-circle-xmark"></i> Sorry! Your message could not be sent. Please try again later.';
+
+            // Hide error message after 6 seconds
+            setTimeout(() => {
+                statusMessage.className = "form-status";
+                statusMessage.innerHTML = "";
+            }, 6000);
+
+        });
+
+    });
+
+}
