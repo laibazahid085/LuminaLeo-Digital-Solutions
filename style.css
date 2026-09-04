@@ -84,17 +84,29 @@ body {
     padding: 0 1.5rem;
 }
 .brand-logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: #fff;
+    font-family: 'Plus Jakarta Sans', 'Syne', 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    color: #ffffff;
     text-decoration: none;
-    letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
     position: relative;
-    z-index: 1001; /* Keeps logo interactive above overlays */
+    transition: transform 0.3s ease;
 }
-.brand-logo span { color: var(--primary-accent); transition: var(--transition-snappy); }
-.brand-logo:hover span { filter: drop-shadow(0 0 8px var(--primary-accent)); }
 
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+.brand-logo span {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: -2px; /* Smooth overlapping touch */
+    filter: drop-shadow(0px 2px 8px rgba(59, 130, 246, 0.4));
+}
 .nav-links {
     display: flex;
     align-items: center;
@@ -512,12 +524,20 @@ section { padding: clamp(60px, 8vw, 120px) 0; position: relative; }
 }
 .pricing-card.featured {
     border-color: var(--primary-accent);
+    padding-top: 3.5rem !important;
     box-shadow: 0 15px 35px rgba(59,130,246,0.12);
 }
 .pricing-card.featured:hover {
     box-shadow: 0 20px 45px rgba(59,130,246,0.22);
 }
 .card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    white-space: nowrap;
+    z-index: 2;
     position: absolute; top: 15px; right: 15px; background: var(--primary-gradient);
     color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 100px;
     box-shadow: 0 4px 12px rgba(59,130,246,0.3);
@@ -629,7 +649,9 @@ section { padding: clamp(60px, 8vw, 120px) 0; position: relative; }
 .price-block { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
 .starting-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-accent); font-weight: 700; }
 .tier-card .price {
-    font-size: clamp(2.5rem, 5vw, 3.25rem);
+    font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+    white-space: nowrap;
+    letter-spacing: -0.5px;
     font-weight: 900; color: #fff; line-height: 1.1;
     background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
     -webkit-background-clip: text;
